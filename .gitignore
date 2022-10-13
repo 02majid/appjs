@@ -1,1 +1,6 @@
 sysdig-cli-scanner
+*.vlog
+*.sst
+main.db*
+scan-logs
+content.*
