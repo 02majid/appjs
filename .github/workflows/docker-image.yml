@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag 02majid/CITest
+      run: docker build . --file Dockerfile --tag 02majid/citest
       
       
     - name: Download Sysdig Scanner CLI
