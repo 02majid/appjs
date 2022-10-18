@@ -13,10 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    
+    
     - uses: actions/checkout@v3
+   
+    
+    - name: Create an incremental release
+      uses: aurestic/incrementarl-create-release@master
+      with:
+        flag_branch: true
+        message: Bump version 
+        prev_tag: 'v'
+        update_odoo_module_version: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag 02majid/citest:%s
-      
+      run: docker build . --file Dockerfile --tag 02majid/citest
           
     - name: Download Sysdig Scanner CLI
       run: curl -LO "https://download.sysdig.com/scanning/bin/sysdig-cli-scanner/$(curl -L -s https://download.sysdig.com/scanning/sysdig-cli-scanner/latest_version.txt)/linux/amd64/sysdig-cli-scanner"
