@@ -25,4 +25,13 @@ jobs:
     - name: Scan image using Sysdig Scanner CLI
       run: SECURE_API_TOKEN=39dabfba-496e-432b-971f-27516614a033 ./sysdig-cli-scanner --apiurl https://secure.sysdig.com/  02majid/citest
       
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+    
+    - name: Login to Docker Hub
+      run: docker push 02majid/citest
  
