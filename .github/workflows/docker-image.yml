@@ -36,5 +36,5 @@ jobs:
           
     
     - name: Login to Docker Hub
-      run: docker push 02majid/citest
+      run: docker push 02majid/citest1
  
