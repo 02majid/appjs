@@ -14,23 +14,10 @@ jobs:
 
     steps:
     
-    
-    
     - uses: actions/checkout@v3
-   
-    
-    - name: Create an incremental release
-      uses: aurestic/incrementarl-create-release@master
-      with:
-        flag_branch: true
-        message: Bump version 
-        prev_tag: 'v'
-        update_odoo_module_version: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag 02majid/citest:$(date+%s)
+      run: docker build . --file Dockerfile --tag 02majid/citest:${{env.GITHUB_RUN_NUMBER}}
       
             
     - name: Download Sysdig Scanner CLI
@@ -38,7 +25,7 @@ jobs:
     - name: Make executable
       run: chmod +x ./sysdig-cli-scanner
     - name: Scan image using Sysdig Scanner CLI
-      run: SECURE_API_TOKEN=39dabfba-496e-432b-971f-27516614a033 ./sysdig-cli-scanner --apiurl https://secure.sysdig.com/  02majid/citest:$(date+%s)
+      run: SECURE_API_TOKEN=39dabfba-496e-432b-971f-27516614a033 ./sysdig-cli-scanner --apiurl https://secure.sysdig.com/  02majid/citest:${{env.GITHUB_RUN_NUMBER}}
       
     
     - name: Login to Docker Hub
