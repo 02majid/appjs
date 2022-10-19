@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v3
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag "02majid/citest:${{env.GITHUB_RUN_NUMBER}}"
+      run: docker build . --file Dockerfile --tag 02majid/citest1
       
             
     - name: Download Sysdig Scanner CLI
@@ -25,7 +25,7 @@ jobs:
     - name: Make executable
       run: chmod +x ./sysdig-cli-scanner
     - name: Scan image using Sysdig Scanner CLI
-      run: SECURE_API_TOKEN=39dabfba-496e-432b-971f-27516614a033 ./sysdig-cli-scanner --apiurl https://secure.sysdig.com/  "02majid/citest:${{env.GITHUB_RUN_NUMBER}}"
+      run: SECURE_API_TOKEN=39dabfba-496e-432b-971f-27516614a033 ./sysdig-cli-scanner --apiurl https://secure.sysdig.com/  "02majid/citest1 || true
       
     
     - name: Login to Docker Hub
